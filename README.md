@@ -10,7 +10,7 @@ This project implements Sign Language Detection using four different versions of
 The models are trained and tested on the **American Sign Language (ASL) dataset** to detect and recognize various hand signs.
 
 ## Dataset
-The **American Sign Language (ASL) dataset** consists of images representing different hand signs. The dataset is preprocessed and annotated to be used for object detection tasks with YOLO models.
+The **American Sign Language (ASL) dataset** consists of images representing 26 different hand signs. The dataset is preprocessed and annotated to be used for object detection tasks with YOLO models.
 
 ## Project Structure
 ```
@@ -23,24 +23,40 @@ The **American Sign Language (ASL) dataset** consists of images representing dif
 ```
 
 ## Installation
-To set up the environment, install the required dependencies:
+For installation and setup, clone the YOLO repository:
 ```bash
-pip install -r requirements.txt
+git clone https://github.com/ultralytics/yolov5.git
+cd yolov5
+```
+Replace `yolov5` with `yolov8` depending on the model you want to train.
+
+## Install Dependencies
+
+To train a YOLO model on the ASL dataset, we need to beforehand install the dependencies using the following command:
+```bash
+pip install ultralytics
 ```
 
-## Training the Models
+## Preparing the dataset
+Create a data_yaml.yaml file with the dataset structure:
+```bash
+train: /path/to/dataset/train
+val: /path/to/dataset/valid
+test: /path/to/dataset/test
+
+nc: 26
+names: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+
+```
+
+## Training the model
+
 To train a YOLO model on the ASL dataset, use the following command:
 ```bash
-python train.py --model yolov5m --epochs 50 --data asl.yaml
+yolo task=detect mode=train model=yolov5m.pt data=data_yaml.yaml epochs=25 imgsz=640 batch=8 name=yolo_v5M_640is
 ```
-Replace `yolov5m` with `yolov5l`, `yolov8m`, or `yolov8l` depending on the model you want to train.
+Replace `yolov5m` with `yolov5l` , `yolo8m` or `yolo8l` depending on the model you want to train.
 
-## Inference
-To run inference on an image or video, use the following command:
-```bash
-python detect.py --model yolov8l --source path/to/image_or_video
-```
-Replace `yolov8l` with the model you want to use.
 
 ## Results & Comparisons
 The performance of each model is evaluated using metrics such as:
