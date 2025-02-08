@@ -53,15 +53,15 @@ names: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O
 
 To train a YOLO model on the ASL dataset, use the following command:
 ```bash
-yolo task=detect mode=train model=yolov5m.pt data=data_yaml.yaml epochs=25 imgsz=640 batch=8 name=yolo_v5M_640is
+yolo task=detect mode=train model=yolov5m.pt data=data_yaml.yaml epochs=25 imgsz=640 batch=8 name=desired_name_to_save_file
 ```
 Replace `yolov5m` with `yolov5l` , `yolo8m` or `yolo8l` depending on the model you want to train.
 
 
 ## Results & Comparisons
 The performance of each model is evaluated using metrics such as:
-- **mAP (Mean Average Precision)**
 - **Confusion Matrix**
+- **mAP (Mean Average Precision)**
 - **Accuracy**
 - **Various other graphs**
 For more info., Refer Results folder.
